@@ -25,7 +25,7 @@ async function initRepo() {
             JSON.stringify({repositories: []}, null, 2)
         );
 
-        await fsp.writeFile(headPath, "", "utf-8");
+        await fs.writeFile(headPath, "", "utf-8");
 
         console.log('Repository initialized');
 
