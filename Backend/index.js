@@ -19,7 +19,14 @@ yargs(hideBin(process.argv))
 })
 
 
-.command('commit', 'Commit changes', {}, commit)
+.command('commit <msg>', 'To commit changes to a repository', (yargs) => {
+    yargs.positional('msg', {
+        describe: 'Commit message',
+        type: 'string'
+    })}
+   ,argv =>{
+    commit(argv.msg);
+})
 .command('pull', 'Pull changes', {}, pullRepo)
 .command('push', 'Push changes', {}, pushRepo)
 .demandCommand(1, 'You need to specify a command')
