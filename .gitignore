@@ -1,5 +1,6 @@
 
 Backend/node_modules/
+Backend/.multigit/
 dist/
 build/
 *.log
