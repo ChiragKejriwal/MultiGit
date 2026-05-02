@@ -7,6 +7,7 @@ const {commit} = require('./controllers/commit');
 const {pullRepo} = require('./controllers/pull');
 const {pushRepo} = require('./controllers/push');
 const {revert} = require('./controllers/revert');
+const {log} = require('./controllers/log');
 
 yargs(hideBin(process.argv))
 .command('init', 'Initialize repositories', {}, initRepo)
@@ -37,6 +38,7 @@ yargs(hideBin(process.argv))
     })}, argv => {
     revert(argv.commitId);
 })
+.command(`log`, 'Show commit history', {}, log)
 .demandCommand(1, 'You need to specify a command')
 .help()
 .argv;
