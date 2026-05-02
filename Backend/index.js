@@ -5,7 +5,7 @@ const {initRepo} = require('./controllers/init');
 const {add} = require('./controllers/add');
 const {commit} = require('./controllers/commit');
 const {pullRepo} = require('./controllers/pull');
-const {pushRepo} = require('./controllers/push');
+const {push} = require('./controllers/push');
 const {revert} = require('./controllers/revert');
 const {log} = require('./controllers/log');
 
@@ -30,7 +30,14 @@ yargs(hideBin(process.argv))
     commit(argv.msg);
 })
 .command('pull', 'Pull changes', {}, pullRepo)
-.command('push', 'Push changes', {}, pushRepo)
+.command('push <repoId>', 'Push changes to the repo', (yargs)=>{
+    yargs.positional('repoId', {
+        describe: 'Repository ID to push to',
+        type: 'string'
+    })}, argv =>{
+        push(argv.repoId);
+})
+
 .command('revert <commitId>', 'Revert to a specific commit', (yargs) => {
     yargs.positional('commitId', {
         describe: 'ID of the commit to revert to',

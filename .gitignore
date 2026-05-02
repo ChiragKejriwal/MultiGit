@@ -4,3 +4,4 @@ Backend/.multigit/
 dist/
 build/
 *.log
+Backend/.env
