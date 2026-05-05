@@ -1,7 +1,10 @@
 
 Backend/node_modules/
 Backend/.multigit/
+CLI_commands/node_modules/
+CLI_commands/.multigit/
 dist/
 build/
 *.log
 Backend/.env
+CLI_commands/.env
