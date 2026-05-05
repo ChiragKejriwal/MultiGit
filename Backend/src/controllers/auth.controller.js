@@ -150,10 +150,79 @@ async function getUserProfile(req, res) {
     }
 }
 
+async function deleteUserAccount(req, res) {
+    try {
+        const userId = req.params.id;
+        const { data: user } = await supabase
+            .from('users')
+            .select('*')
+            .eq('id', userId)
+            .single();
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        await supabase
+            .from('users')
+            .delete()
+            .eq('id', userId);
+        return res.status(200).json({ message: 'User account deleted successfully' });
+    } catch (error) {
+        return res.status(500).json({ message: 'Server error', error: error.message });
+    }
+}
+
+async function getAllUsers(req, res) {
+    try {
+        const { data: users } = await supabase
+            .from('users')
+            .select('id, username, email');
+        return res.status(200).json({ users });
+    } catch (error) {
+        return res.status(500).json({ message: 'Server error', error: error.message });
+    }
+}
+
+async function updateUserInfo(req, res) {
+
+    const {username, email, password} = req.body;
+    const userId = req.params.id;
+    try {
+        const { data: user } = await supabase
+            .from('users')
+            .select('*')
+            .eq('id', userId)
+            .single();
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+    
+        const updatedData = {};
+        if (username) updatedData.username = username;
+        if (email) updatedData.email = email;
+        if (password) updatedData.password = await bcrypt.hash(password, 10);
+
+        const { data: updatedUser, error } = await supabase
+            .from('users')
+            .update(updatedData)
+            .eq('id', userId)
+            .select('id, username, email')
+            .single();
+        if (error) {
+            return res.status(500).json({ message: 'Error updating user', error: error.message });
+        }
+        return res.status(200).json({ message: 'User information updated successfully', user: updatedUser });
+    } catch (error) {
+        return res.status(500).json({ message: 'Server error', error: error.message });
+    }
+
+}
+
 module.exports = {
     registerUser,
     loginUser,
     logoutUser,
     getUserProfile,
+    deleteUserAccount,
+    getAllUsers,
 };
     
