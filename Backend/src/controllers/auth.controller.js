@@ -217,6 +217,7 @@ async function updateUserInfo(req, res) {
 
 }
 
+
 module.exports = {
     registerUser,
     loginUser,
@@ -224,5 +225,6 @@ module.exports = {
     getUserProfile,
     deleteUserAccount,
     getAllUsers,
+    updateUserInfo,
 };
     
