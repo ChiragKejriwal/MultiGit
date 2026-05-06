@@ -178,11 +178,11 @@ async function toggleRepoVisibility(req, res) {
     }
 
     // OWNER CHECK
-    // if (repo.owner !== req.user.sub) {
-    //   return res.status(403).json({
-    //     message: "Unauthorized"
-    //   });
-    // }
+    if (repo.owner !== req.user.sub) {
+      return res.status(403).json({
+        message: "Unauthorized"
+      });
+    }
 
     // TOGGLE VISIBILITY
     const newVisibility =
