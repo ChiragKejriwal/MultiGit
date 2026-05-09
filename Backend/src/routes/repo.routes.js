@@ -4,11 +4,11 @@ const repoController = require("../controllers/repo.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
 
 /**
- * @route POST /api/repos
+ * @route POST /api/repos/create
  * @desc Create a new repository
  * @access Private
  */
-repoRouter.post("/", authMiddleware.authUser, repoController.createRepo);
+repoRouter.post("/create", authMiddleware.authUser, repoController.createRepo);
 
 /**
  * @route GET /api/repos

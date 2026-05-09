@@ -18,6 +18,7 @@ app.use(cookieParser());
 
 app.use('/api/auth', authRouter);
 app.use('/api/repos', repoRouter);
+app.use('/api/repo/commits', commitRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
