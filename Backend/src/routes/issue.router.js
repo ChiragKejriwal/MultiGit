@@ -8,14 +8,14 @@ const authMiddleware = require('../middleware/auth.middleware');
  * @desc Create a new issue
  * @access Private
  */
-router.post('/', authMiddleware.authUser, issueController.createIssue);
+router.post('/create', authMiddleware.authUser, issueController.createIssue);
 
 /**
  * @route GET /api/issues
- * @desc Get all issues for the authenticated user
+ * @desc Get all issues for the repository
  * @access Private
  */
-router.get('/', authMiddleware.authUser, issueController.getIssues);
+router.get('/:id/all', authMiddleware.authUser, issueController.getIssues);
 
 /**
  * @route GET /api/issues/:id

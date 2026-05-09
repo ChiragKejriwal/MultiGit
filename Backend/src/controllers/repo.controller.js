@@ -120,7 +120,12 @@ async function updateRepo(req, res) {
       return res.status(400).json({ message: "Repository ID is required" });
     }
 
-    const { data, error } = await repoService.updateRepo(id, req.body);
+    const { title, description } = req.body;
+
+    if (!title && !description) {
+      return res.status(400).json({ message: "At least one field (title or description) is required to update" });
+    }
+    const { data, error } = await repoService.updateRepo(id, { title, description });
 
     if (error)
       return res
