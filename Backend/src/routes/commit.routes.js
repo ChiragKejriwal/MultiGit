@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const commitRouter = express.Router();
 const commitController = require('../controllers/commit.controller');
 const authMiddleware = require('../middlewares/auth.middleware');
 
@@ -7,21 +7,21 @@ const authMiddleware = require('../middlewares/auth.middleware');
  * @desc Create a new commit
  * @access Private
  */
-router.post('/:id/create', authMiddleware.authUser, commitController.createCommit);
+commitRouter.post('/:id/create', authMiddleware.authUser, commitController.createCommit);
 
 /**
  * @route GET /api/repo/commits/:id/all
  * @desc Get all commits for a repository
  * @access Private
  */
-router.get('/:id/all', authMiddleware.authUser, commitController.getRepoCommits);
+commitRouter.get('/:id/all', authMiddleware.authUser, commitController.getRepoCommits);
 
 /**
  * @route GET /api/repo/commits/:id/:commitId
  * @desc Get a specific commit by ID
  * @access Private
  */
-router.get('/:id/:commitId', authMiddleware.authUser, commitController.getCommitById);
+commitRouter.get('/:id/:commitId', authMiddleware.authUser, commitController.getCommitById);
 
 
 /**
@@ -29,11 +29,13 @@ router.get('/:id/:commitId', authMiddleware.authUser, commitController.getCommit
  * @desc Get the commit tree for a repository
  * @access Private
  */
-router.get('/:id/tree', authMiddleware.authUser, commitController.getCommitTree);
+commitRouter.get('/:id/tree', authMiddleware.authUser, commitController.getCommitTree);
 
 /**
  * @route POST /api/repo/commits/check
  * @desc Check existing commits by IDs
  * @access Private
  */
-router.post('/check', authMiddleware.authUser, commitController.checkExistingCommits);
+commitRouter.post('/check', authMiddleware.authUser, commitController.checkExistingCommits);
+
+module.exports = commitRouter;
