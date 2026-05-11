@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const commitController = require('../controllers/commit.controller');
-const authMiddleware = require('../middleware/auth.middleware');
+const authMiddleware = require('../middlewares/auth.middleware');
 
 /** * @route POST /api/repo/commits/:id/create
  * @desc Create a new commit
@@ -30,3 +30,10 @@ router.get('/:id/:commitId', authMiddleware.authUser, commitController.getCommit
  * @access Private
  */
 router.get('/:id/tree', authMiddleware.authUser, commitController.getCommitTree);
+
+/**
+ * @route POST /api/repo/commits/check
+ * @desc Check existing commits by IDs
+ * @access Private
+ */
+router.post('/check', authMiddleware.authUser, commitController.checkExistingCommits);

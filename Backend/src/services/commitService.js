@@ -1,5 +1,6 @@
 const supabase = require("../config/db");
 
+
 // GET ALL COMMITS OF REPO
 exports.getRepoCommits = async (repoId) => {
   return await supabase
@@ -46,4 +47,17 @@ exports.getCommitTree = async (
     .from("commits")
     .select("id, parent_id")
     .eq("repo_id", repoId);
+};
+
+
+// CHECK EXISTING COMMITS
+exports.checkExistingCommits = async (
+  commitIds
+) => {
+
+  return await supabase
+    .from("commits")
+    .select("id")
+    .in("id", commitIds);
+
 };

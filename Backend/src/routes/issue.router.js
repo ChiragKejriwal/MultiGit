@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const issueController = require('../controllers/issue.controller');
-const authMiddleware = require('../middleware/auth.middleware');
+const authMiddleware = require('../middlewares/auth.middleware');
 
 /**
  * @route POST /api/issues
