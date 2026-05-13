@@ -5,7 +5,7 @@ const authMiddleware = require('../middlewares/auth.middleware');
 
 // CHECK OBJECTS
 /**
- * @route POST /api/objects/:id/objects/check
+ * @route POST /api/objects/:id/check
  * @desc Check if objects with given hashes exist in the repository
  * @access Private
  */
