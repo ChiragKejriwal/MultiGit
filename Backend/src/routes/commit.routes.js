@@ -16,6 +16,15 @@ commitRouter.post('/:id/create', authMiddleware.authUser, commitController.creat
  */
 commitRouter.get('/:id/all', authMiddleware.authUser, commitController.getRepoCommits);
 
+
+/**
+ * @route GET /api/repo/commits/:id/tree
+ * @desc Get the commit tree for a repository
+ * @access Private
+ */
+commitRouter.get('/:id/tree', authMiddleware.authUser, commitController.getCommitTree);
+
+
 /**
  * @route GET /api/repo/commits/:id/:commitId
  * @desc Get a specific commit by ID
@@ -25,17 +34,10 @@ commitRouter.get('/:id/:commitId', authMiddleware.authUser, commitController.get
 
 
 /**
- * @route GET /api/repo/commits/:id/tree
- * @desc Get the commit tree for a repository
- * @access Private
- */
-commitRouter.get('/:id/tree', authMiddleware.authUser, commitController.getCommitTree);
-
-/**
- * @route POST /api/repo/commits/check
+ * @route POST /api/repo/commits/:id/check
  * @desc Check existing commits by IDs
  * @access Private
  */
-commitRouter.post('/check', authMiddleware.authUser, commitController.checkExistingCommits);
+commitRouter.post('/:id/check', authMiddleware.authUser, commitController.checkExistingCommits);
 
 module.exports = commitRouter;

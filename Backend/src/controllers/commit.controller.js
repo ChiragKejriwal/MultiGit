@@ -108,6 +108,12 @@ async function getCommitTree(req, res) {
 
     const { commitIds } = req.body;
 
+    const { id } = req.params; // Repository ID
+
+    if (!id) {
+      return res.status(400).json({ message: "Repository ID is required" });
+    }
+
     if (!commitIds ||!Array.isArray(commitIds)) {
       return res.status(400).json({
         message:
@@ -115,7 +121,7 @@ async function getCommitTree(req, res) {
       });
     }
 
-    const { data, error } = await commitService.checkExistingCommits(commitIds);
+    const { data, error } = await commitService.checkExistingCommits(id, commitIds);
 
     if (error) {
       return res.status(400).json({

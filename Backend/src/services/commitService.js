@@ -52,12 +52,14 @@ exports.getCommitTree = async (
 
 // CHECK EXISTING COMMITS
 exports.checkExistingCommits = async (
+  repoId,
   commitIds
 ) => {
 
   return await supabase
     .from("commits")
     .select("id")
+    .eq("repo_id", repoId)
     .in("id", commitIds);
 
 };
