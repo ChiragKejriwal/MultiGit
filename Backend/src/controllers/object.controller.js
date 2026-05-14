@@ -1,4 +1,4 @@
-const objectService = require("../services/object.service");
+const objectService = require("../services/objectsService");
 
 // CHECK OBJECTS
 async function checkExistingObjects(req, res) {

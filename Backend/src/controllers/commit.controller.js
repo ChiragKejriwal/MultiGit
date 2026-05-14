@@ -1,4 +1,4 @@
-const commitService = require('../services/commit.service');
+const commitService = require('../services/commitService');
 
 // CREATE COMMIT
 async function createCommit(req, res) {

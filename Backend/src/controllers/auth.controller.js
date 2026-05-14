@@ -152,7 +152,7 @@ async function getUserProfile(req, res) {
 
 async function deleteUserAccount(req, res) {
     try {
-        const userId = req.params.id;
+        const userId = req.user.id;
         const { data: user } = await supabase
             .from('users')
             .select('*')
@@ -185,7 +185,7 @@ async function getAllUsers(req, res) {
 async function updateUserInfo(req, res) {
 
     const {username, email, password} = req.body;
-    const userId = req.params.id;
+    const userId = req.user.id;
     try {
         const { data: user } = await supabase
             .from('users')

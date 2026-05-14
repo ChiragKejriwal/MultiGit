@@ -32,26 +32,26 @@ authRouter.post('/logout',authMiddleware.authUser, authController.logoutUser);
 authRouter.get('/profile', authMiddleware.authUser, authController.getUserProfile);
 
 /**
- * @route DELETE /api/auth/:id
+ * @route DELETE /api/auth/deleteUser
  * @desc Delete user account
  * @access Private
  */
-authRouter.delete('/:id', authMiddleware.authUser, authController.deleteUserAccount);
+authRouter.delete('/deleteUser', authMiddleware.authUser, authController.deleteUserAccount);
  
 
 /**
- * @route PUT /api/auth/getAllUsers
+ * @route GET /api/auth/getAllUsers
  * @desc Get all users (admin only)
  * @access Private
  */
 authRouter.get('/getAllUsers',authMiddleware.authUser, authController.getAllUsers);
 
 /**
- * @route PUT /api/auth/updateUser/:id
+ * @route PUT /api/auth/updateUser
  * @desc Update user information
  * @access Private
  */
 
-authRouter.put('/updateUser/:id', authMiddleware.authUser, authController.updateUserInfo);
+authRouter.put('/updateUser', authMiddleware.authUser, authController.updateUserInfo);
 
 module.exports = authRouter;

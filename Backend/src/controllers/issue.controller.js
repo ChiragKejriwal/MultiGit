@@ -1,4 +1,4 @@
-const issueService = require('../services/issue.service');
+const issueService = require('../services/issueService');
 
 // CREATE ISSUE
 async function createIssue(req, res) {

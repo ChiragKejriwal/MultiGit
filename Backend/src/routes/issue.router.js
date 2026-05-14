@@ -15,7 +15,7 @@ issueRouter.post('/create', authMiddleware.authUser, issueController.createIssue
  * @desc Get all issues for the repository
  * @access Private
  */
-issueRouter.get('/:id/all', authMiddleware.authUser, issueController.getIssues);
+issueRouter.get('/:id/all', authMiddleware.authUser, issueController.getAllIssues);
 
 /**
  * @route GET /api/issues/:id
